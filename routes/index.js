@@ -14,7 +14,7 @@ module.exports = (params) => {
     // console.log(`Number of visits: ${req.session.visitcount}`);
     const topSpeakers = await speakersService.getList();
     const allArtworks = await speakersService.getAllArtwork();
-    // console.log(topSpeakers);
+    console.log(topSpeakers);
     res.render('layout', { pageTitle: 'Welcome', template: 'index', topSpeakers, allArtworks });
   });
 
