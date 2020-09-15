@@ -3,6 +3,7 @@
 const express = require('express');
 const path = require('path');
 const cookieSession = require('cookie-session');
+const createError = require('http-errors');
 
 const FeedbackService = require('./services/FeedbackService');
 const SpeakersService = require('./services/SpeakerService');
@@ -50,6 +51,21 @@ app.use(
     speakersService,
   })
 );
+
+app.use((req, res, next) => {
+  return next(createError(404, 'File not found'));
+});
+
+app.use((err, req, res, next) => {
+  res.locals.message = err.message;
+  console.error(err);
+  const status = err.status || 500;
+  res.locals.status = status;
+  res.status(status);
+  // const num = Math.floor(Math.random() * 2 + 1);
+  // if (num == 1) res.render('error');
+  res.render('error2');
+});
 
 // app.get('/', (req, res) => {
 //   // res.send('Hello Express :)');

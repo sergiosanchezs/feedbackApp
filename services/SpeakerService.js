@@ -26,6 +26,7 @@ class SpeakerService {
 
     // We are using map() to transform the array we get into another one
     return data.map((speaker) => {
+      // throw new Error('Async await error');
       return { name: speaker.name, shortname: speaker.shortname };
     });
   }
@@ -76,7 +77,6 @@ class SpeakerService {
       name: speaker.name,
       shortname: speaker.shortname,
       description: speaker.description,
-      artworks: speaker.artwork,
     };
   }
 
